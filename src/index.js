@@ -1,24 +1,7 @@
 import './styles.css'
 import ValidityStyling from './functions/validitystyling'
 
-const email = document.getElementById("email");
-email.addEventListener('input', () => {
-    ValidityStyling.highlightInvalidInput(email);
-})
-
-window.addEventListener("load", () => {
-    // Here, we test if the field is empty (remember, the field is not required)
-    // If it is not, we check if its content is a well-formed e-mail address.
-    const isValid = email.value.length === 0 || emailRegExp.test(email.value);
-    email.className = isValid ? "valid" : "invalid";
-});
-
-const form = document.getElementById("contentform");
-form.addEventListener('submit', (event) => {
-    ValidityStyling.validatePassword();
-    event.preventDefault();
-})
-
+// Name form validations
 const firstname = document.getElementById("firstname");
 firstname.addEventListener('input', () => {
     ValidityStyling.highlightInvalidInput(firstname);
@@ -29,15 +12,30 @@ lastname.addEventListener('input', () => {
     ValidityStyling.highlightInvalidInput(lastname);
 })
 
+// email validation
+const email = document.getElementById("email");
+email.addEventListener('input', () => {
+    ValidityStyling.highlightInvalidInput(email);
+})
 
+// Phone number validation
 const phonenumber = document.getElementById("phonenumber");
 phonenumber.addEventListener('input', () => {
     ValidityStyling.highlightInvalidInput(phonenumber);
     phonenumber = ValidityStyling.phoneFormat(phonenumber)
 })
 
+// zip validation
+const zipcode = document.getElementById("zipcode");
+zipcode.addEventListener('input', ()=>{
+    if (zipcode.value.length != 5){
+        zipcode.style.border = "3px solid red"
+    } else {
+        zipcode.style.border = "2px solid green"
+    }
+})
 
-
+// password validations (First by content, then by matching)
 const passwordfield = document.getElementById("password");
 const passwordconfirm = document.getElementById("passwordconfirm");
 passwordfield.onchange = ValidityStyling.validatePassword;
@@ -48,4 +46,25 @@ passwordfield.addEventListener('input', () => {
 })
 passwordconfirm.addEventListener('input', () => {
     ValidityStyling.highlightInvalidInput(passwordconfirm);
+})
+
+// submission button overrides
+const form = document.getElementById("contentform");
+form.addEventListener('submit', (event) => {
+    if (firstname.classList.contains('invalidinput')){
+        event.preventDefault()
+    } else if (lastname.classList.contains('invalidinput')){
+        event.preventDefault()
+    } else if (email.classList.contains('invalidinput')){
+        event.preventDefault()
+    } else if (phonenumber.classList.contains('invalidinput')){
+        event.preventDefault()
+    } else if (passwordfield.classList.contains('invalidinput')){
+        event.preventDefault()
+    } else if (passwordconfirm.classList.contains('invalidinput')){
+        event.preventDefault()
+    } else {
+        alert("Successfully registered!")
+    }
+    
 })
