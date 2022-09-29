@@ -15,6 +15,7 @@ window.addEventListener("load", () => {
 
 const form = document.getElementById("contentform");
 form.addEventListener('submit', (event) => {
+    ValidityStyling.validatePassword();
     event.preventDefault();
 })
 
@@ -29,7 +30,6 @@ lastname.addEventListener('input', () => {
 })
 
 
-
 const phonenumber = document.getElementById("phonenumber");
 phonenumber.addEventListener('input', () => {
     ValidityStyling.highlightInvalidInput(phonenumber);
@@ -40,8 +40,8 @@ phonenumber.addEventListener('input', () => {
 
 const passwordfield = document.getElementById("password");
 const passwordconfirm = document.getElementById("passwordconfirm");
-passwordfield.onchange = ValidityStyling.validatePassword(passwordfield, passwordconfirm);
-passwordconfirm.onkeyup = ValidityStyling.validatePassword(passwordfield, passwordconfirm);
+passwordfield.onchange = ValidityStyling.validatePassword;
+passwordconfirm.onkeyup = ValidityStyling.validatePassword;
 
 passwordfield.addEventListener('input', () => {
     ValidityStyling.highlightInvalidInput(passwordfield);

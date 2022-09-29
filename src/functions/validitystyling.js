@@ -1,47 +1,62 @@
 const ValidityStyling = (() => {
+    function determinedInvalid(element) {
+        element.classList.add('invalidinput');
+        element.classList.remove('validatedinput');
+    }
+    function determinedValid(element) {
+        element.classList.add('validatedinput');
+        element.classList.remove('invalidinput');
+    }
+
     function highlightInvalidInput(inputfield) {
         if (inputfield.type === "text") {
             if (inputfield.value.length < 2) {
-                inputfield.style.border = "3px solid red"
+                determinedInvalid(inputfield);
             } else {
-                inputfield.style.border = "2px solid green"
+                determinedValid(inputfield);
             }
         }
         if (inputfield.type === "email") {
             const format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             if (inputfield.value.match(format)) {
-                inputfield.style.border = "2px solid green"
+                determinedValid(inputfield);
             } else {
-                inputfield.style.border = "3px solid red"
+                determinedInvalid(inputfield);
             }
         }
         if (inputfield.type === "phonenumber") {
             const format = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
             if (inputfield.value.match(format)) {
-                inputfield.style.border = "2px solid green"
+                determinedValid(inputfield);
             } else {
-                inputfield.style.border = "3px solid red"
+                determinedInvalid(inputfield);
             }
         }
         if (inputfield.type === "password") {
             const format = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
             if (inputfield.value.match(format)) {
-                inputfield.style.border = "2px solid green"
+                determinedValid(inputfield);
             } else {
-                inputfield.style.border = "3px solid red"
+                determinedInvalid(inputfield);
             }
         }
     }
 
-    function validatePassword(passwordfield, passwordconfirm) {
-        if (passwordfield.value != passwordconfirm.value) {
-            passwordconfirm.setCustomValidity("Passwords don't match");
-        } else {
-            passwordconfirm.setCustomValidity('');
-        }
+    function validatePassword() {
+        const password = document.getElementById("password");
+        const passwordconfirm = document.getElementById("passwordconfirm");
+        const confirmspan = document.getElementById("confirmspan");
+        if(password.value != passwordconfirm.value) {
+            confirmspan.innerHTML = "Passwords don't match";
+            determinedInvalid(passwordconfirm);
+          } else {
+            confirmspan.innerHTML = "";
+            determinedValid(passwordconfirm);
+          }
 
     }
 
+    // to format phone numbers correctly
     function phoneFormat(input) {//returns (###) ###-####
         input = input.replace(/\D/g, '');
         var size = input.length;
