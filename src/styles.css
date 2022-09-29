@@ -1,3 +1,25 @@
+body, html {
+    height: auto;
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    margin-top: 45%;
+}
+
+.content button {
+    width: 100px;
+    margin: 15px;
+    align-self: center;
+}
+
+#country {
+    width: 200px;
+}
+
 #middleinitial {
     width: 25px;
 }
@@ -8,4 +30,15 @@
 
 .validatedinput {
     border: 2px solid green;
+}
+
+#confirmspan {
+    color: red;
+}
+
+#contentform {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
 }
