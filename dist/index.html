@@ -1,1 +1,47 @@
-<script src="bundle.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation (JS)</title>
+</head>
+
+<body>
+
+    <form action="">
+        <fieldset>
+            <legend>Name:</legend>
+            <label for="firstname">First:</label>
+            <input type="text" name="firstname" id="firstname">
+            <label for="middleinitial">M.I.:</label>
+            <input type="text" name="middleinitial" id="middleinitial">
+            <label for="lastname">Last:</label>
+            <input type="text" name="lastname" id="lastname">
+        </fieldset>
+        <fieldset>
+            <legend>Contact:</legend>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email">
+            <label for="phonenumber">Phone:</label>
+            <input type="text" name="phonenumber" id="phonenumber"><br><br>
+            <label for="country">Country:</label>
+            <input type="text" name="country" id="country">
+            <label for="zipcode">Zip:</label>
+            <input type="text" name="zipcode" id="zipcode">
+        </fieldset>
+        <fieldset>
+            <legend>Password:</legend>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+            <label for="confirmpassword">Confirm:</label>
+            <input type="password" name="confirmpassword" id="confirmpassword">
+        </fieldset>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="bundle.js"></script>
+</body>
+
+</html>
