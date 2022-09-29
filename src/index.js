@@ -20,10 +20,10 @@ email.addEventListener('input', () => {
 
 // Phone number validation
 const phonenumber = document.getElementById("phonenumber");
-phonenumber.addEventListener('input', () => {
-    ValidityStyling.highlightInvalidInput(phonenumber);
-    phonenumber = ValidityStyling.phoneFormat(phonenumber)
-})
+ phonenumber.addEventListener('input', () => {
+     ValidityStyling.highlightInvalidInput(phonenumber);
+     phonenumber.value = ValidityStyling.phoneFormat(phonenumber.value)
+ })
 
 // zip validation
 const zipcode = document.getElementById("zipcode");
@@ -63,8 +63,9 @@ form.addEventListener('submit', (event) => {
         event.preventDefault()
     } else if (passwordconfirm.classList.contains('invalidinput')){
         event.preventDefault()
+    } else if (firstname.value === ""){
+        event.preventDefault()
     } else {
         alert("Successfully registered!")
-    }
-    
+    }    
 })
